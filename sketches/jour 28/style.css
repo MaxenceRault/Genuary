@@ -1,0 +1,31 @@
+body {
+    background-color: #050505;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#artboard {
+    width: 480px;
+    height: 672px; /* Ratio 1.4 comme d'habitude */
+    background: #000;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #333;
+    box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none; /* Pour ne pas gêner le clic */
+}
+
+.line {
+    position: absolute;
+    height: 1px;
+    transform-origin: 0 0;
+    pointer-events: none;
+}
