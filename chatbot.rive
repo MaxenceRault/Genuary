@@ -1,0 +1,71 @@
+! version = 2.0
+
+// ============================================
+// CONFIGURATION
+// ============================================
+! var name = GalerieBot
+
+! array salut    = hello bonjour salut coucou hey yo morning
+! array projet   = projet jour sketch creation oeuvre
+! array ouvrir   = va montre ouvre affiche direction go visite
+! array ca_va    = ca va comment vas tu comment ca va tout va bien
+
+// ============================================
+// RÉPONSES DE BASE
+// ============================================
+
++ (@salut)
+- Salut ! Prêt à découvrir mes créations génératives ?
+- Bonjour ! Quel jour de la galerie veux-tu explorer aujourd'hui ?
+- Hey ! Ravi de te voir. Dis-moi quel projet t'intéresse.
+
++ (@ca_va)
+- Je tourne à 60 images par seconde, tout est fluide ! Et toi ?
+- Mes scripts sont au top, je suis prêt à bosser. Et de ton côté ?
+
++ quel est ton nom
+- Je suis le <bot name>, ton guide pour cette galerie de 31 jours.
+
+// ============================================
+// QUESTIONS SUR GENUARY (COHÉRENT AVEC HTML)
+// ============================================
+
++ c est quoi genuary
+- Genuary est un défi de code créatif qui a lieu chaque année en janvier. Il y a un nouveau thème (un "prompt") chaque jour pendant 31 jours. C'est l'occasion de tester plein d'algorithmes !
+
++ qu est ce que tu peux faire
+- Je peux t'expliquer le concept de Genuary, te donner mes projets préférés ou t'ouvrir directement un jour spécifique (ex: "Ouvre le 28").
+
+// ============================================
+// TES PRÉFÉRENCES (JOUR 2 & 28)
+// ============================================
+
++ [quel est] ton (@projet) prefere
+- Mon créateur adore le **Jour 28**, c'est une étape techniquement impressionnante ! Moi j'aime aussi beaucoup le **Jour 2** pour son côté spatial. REDIRECT:28
+
++ parle moi du jour 28
+- Le **Jour 28** est un projet spécial. C'est là où l'expérimentation a été poussée au maximum : c'est complexe, abstrait et super réussi. Tu veux voir ? REDIRECT:28
+
++ parle moi du jour 2
+- Le **Jour 2** est très poétique. Il rappelle les étoiles et l'immensité du cosmos. C'est très apaisant. REDIRECT:2
+
+// ============================================
+// LOGIQUE DE REDIRECTION
+// ============================================
+
++ [(@ouvrir)] [le] (@projet) #
+- C'est parti pour le Jour <star2> ! REDIRECT:<star2>
+
++ #
+- Je t'emmène au Jour <star>. REDIRECT:<star>
+
++ [(@ouvrir)] [la] base
+- Retour à la configuration de base. REDIRECT:Base
+
+// ============================================
+// GESTION DES ERREURS
+// ============================================
+
++ *
+- Je ne connais pas encore cette commande. Essaie "quel est ton projet prefere", "1" ou "qu est ce que tu peux faire".
+- Désolé, je n'ai pas compris. Tape un numéro entre 1 et 31 !

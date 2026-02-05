@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genuary 2025</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/rivescript@latest/dist/rivescript.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>🎨 Genuary 2025</h1>
+        <p>31 jours de créations génératives</p>
+    </header>
+
+    <main>
+        <div class="gallery" id="gallery">
+            </div>
+    </main>
+
+    <div class="chatbot" id="chatbot">
+        <div class="chatbot-header" onclick="toggleChat()">
+            <span>🤖 Assistant Genuary</span>
+            <span id="toggle-icon">−</span>
+        </div>
+        <div class="chatbot-content">
+            <div id="chat-messages">
+                <p class="bot-message">👋 Salut ! Je suis ton guide.<br><br>Demande-moi : <b>"qu est ce que tu peux faire"</b> ou <b>"28"</b>.</p>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Dis-moi un numéro..." autocomplete="off">
+                <button onclick="sendMessage()">➤</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
