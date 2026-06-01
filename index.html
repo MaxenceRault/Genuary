@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GENUARY 2025 ~ goofy edition</title>
+    <title>GENUARY 2025 ~ debug.exe</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Space+Mono:wght@400;700&family=VT323&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/rivescript@latest/dist/rivescript.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -16,8 +18,8 @@
         <div class="loader-inner">
             <div class="loader-face">
                 <div class="face-eyes">
-                    <div class="face-eye"><div class="pupil"></div></div>
-                    <div class="face-eye"><div class="pupil"></div></div>
+                    <div class="face-eye"></div>
+                    <div class="face-eye"></div>
                 </div>
                 <div class="face-mouth"></div>
             </div>
@@ -26,88 +28,25 @@
                 <div class="loader-bar" id="loader-bar"></div>
             </div>
             <div class="loader-percent" id="loader-percent">0%</div>
-            <div class="loader-msg" id="loader-msg">chargement des vibes...</div>
+            <div class="loader-msg" id="loader-msg">initialisation...</div>
         </div>
-        <div class="loader-blob blob-1"></div>
-        <div class="loader-blob blob-2"></div>
-        <div class="loader-blob blob-3"></div>
     </div>
 
     <!-- CUSTOM CURSOR -->
     <div class="cursor" id="cursor"></div>
     <div class="cursor-dot" id="cursor-dot"></div>
 
-    <!-- SVG DEFS for comic effects -->
-    <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <filter id="paper-grain">
-                <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/>
-                <feColorMatrix type="saturate" values="0"/>
-                <feBlend in="SourceGraphic" mode="multiply"/>
-            </filter>
-            <pattern id="halftone" width="6" height="6" patternUnits="userSpaceOnUse">
-                <circle cx="3" cy="3" r="1" fill="rgba(255,109,0,0.08)"/>
-            </pattern>
-            <pattern id="dots-bg" width="30" height="30" patternUnits="userSpaceOnUse">
-                <circle cx="15" cy="15" r="2" fill="rgba(255,109,0,0.05)"/>
-            </pattern>
-            <pattern id="lines-bg" width="20" height="20" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                <line x1="0" y1="0" x2="0" y2="20" stroke="rgba(255,109,0,0.03)" stroke-width="1"/>
-            </pattern>
-        </defs>
-    </svg>
+    <!-- SVG DEFS -->
+    <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg"><defs></defs></svg>
 
-    <!-- BACKGROUND LAYERS -->
+    <!-- BACKGROUND -->
     <div class="bg-layers" aria-hidden="true">
         <div class="bg-paper"></div>
         <div class="bg-dots"></div>
         <div class="bg-halftone"></div>
     </div>
 
-    <!-- FLOATING COMIC ELEMENTS -->
-    <div class="comic-decor" aria-hidden="true" id="comicDecor">
-        <!-- Speech bubbles -->
-        <div class="comic-bubble bubble-1">wow!</div>
-        <div class="comic-bubble bubble-2">cool!</div>
-        <div class="comic-bubble bubble-3">art!</div>
-        <div class="comic-bubble bubble-4">:D</div>
-        <!-- Explosions -->
-        <div class="comic-burst burst-1">POW</div>
-        <div class="comic-burst burst-2">BAM</div>
-        <div class="comic-burst burst-3">ZAP</div>
-        <!-- Speed lines -->
-        <div class="speed-lines lines-1"></div>
-        <div class="speed-lines lines-2"></div>
-        <!-- Tape strips -->
-        <div class="tape tape-1"></div>
-        <div class="tape tape-2"></div>
-        <div class="tape tape-3"></div>
-        <div class="tape tape-4"></div>
-        <!-- Doodle arrows -->
-        <div class="doodle-arrow arrow-1">&#10230;</div>
-        <div class="doodle-arrow arrow-2">&#10230;</div>
-        <!-- Stars -->
-        <div class="comic-star cstar-1">&#9733;</div>
-        <div class="comic-star cstar-2">&#9733;</div>
-        <div class="comic-star cstar-3">&#9733;</div>
-        <div class="comic-star cstar-4">&#9733;</div>
-        <div class="comic-star cstar-5">&#9733;</div>
-        <!-- Squiggles -->
-        <div class="squiggle sq-1">~~~~~</div>
-        <div class="squiggle sq-2">~~~~~</div>
-        <!-- Circles -->
-        <div class="doodle-circle dc-1"></div>
-        <div class="doodle-circle dc-2"></div>
-        <div class="doodle-circle dc-3"></div>
-        <!-- Crosses -->
-        <div class="doodle-x dx-1">✕</div>
-        <div class="doodle-x dx-2">✕</div>
-        <!-- Underlines -->
-        <div class="comic-underline cu-1"></div>
-        <div class="comic-underline cu-2"></div>
-    </div>
-
-    <!-- FLOATING 3D DECOR -->
+    <!-- FLOATING 3D OBJECTS -->
     <div class="decor-3d" aria-hidden="true" id="decor3d">
         <div class="float-obj obj-1"><div class="cube"><div class="face front"></div><div class="face back"></div><div class="face left"></div><div class="face right"></div><div class="face top"></div><div class="face bottom"></div></div></div>
         <div class="float-obj obj-2"><div class="donut"></div></div>
@@ -122,61 +61,53 @@
     <!-- HERO -->
     <section class="hero" id="hero">
         <div class="hero-bg-text" aria-hidden="true">GENUARY</div>
-        <div class="hero-cloud cloud-1"></div>
-        <div class="hero-cloud cloud-2"></div>
-        <div class="hero-cloud cloud-3"></div>
         <div class="hero-content">
-            <div class="hero-badge">GOOFY EDITION</div>
+            <div class="hero-badge">v2025.01 &nbsp;~&nbsp; debug.exe</div>
             <h1 class="hero-title">
-                <div class="title-line-wrap"><span class="title-line" data-magnetic>GEN</span></div>
-                <div class="title-line-wrap"><span class="title-line accent" data-magnetic>UARY</span></div>
-                <div class="title-line-wrap"><span class="title-line small" data-magnetic>2025</span></div>
+                <div class="title-line-wrap"><span class="title-line" data-scramble data-magnetic>GEN</span></div>
+                <div class="title-line-wrap"><span class="title-line accent" data-scramble data-magnetic>UARY</span></div>
+                <div class="title-line-wrap"><span class="title-line small">2025</span></div>
             </h1>
             <p class="hero-sub">
-                <span class="reveal-text">31 jours</span>
-                <span class="wiggle">~</span>
-                <span class="reveal-text">code creatif</span>
-                <span class="wiggle">~</span>
-                <span class="reveal-text">art generatif</span>
+                <span>31_sketches</span>
+                <span class="wiggle">/</span>
+                <span>code_créatif</span>
+                <span class="wiggle">/</span>
+                <span>art_génératif</span>
             </p>
             <div class="hero-scroll-cta">
                 <span>scroll pour explorer</span>
                 <div class="bounce-arrow">&#8595;</div>
             </div>
         </div>
-        <div class="sticker sticker-1" data-speed="0.02">*</div>
-        <div class="sticker sticker-2" data-speed="0.04">~</div>
-        <div class="sticker sticker-3" data-speed="0.03">:)</div>
-        <div class="sticker sticker-4" data-speed="0.05">!!</div>
-        <div class="sticker sticker-5" data-speed="0.025">art</div>
-        <div class="sticker sticker-6" data-speed="0.035">wow</div>
     </section>
 
-    <!-- SKETCHES COLLAGE -->
+    <!-- SKETCHES GRID -->
     <section class="collage" id="collage">
-        <!-- Built dynamically by JS -->
+        <!-- Built by JS -->
     </section>
 
     <!-- FOOTER -->
     <footer class="goofy-footer">
         <div class="footer-bubble">
-            <div class="footer-doodle">~~~***~~~</div>
+            <div>genuary 2025</div>
+            <div class="footer-doodle">// end of file //</div>
         </div>
     </footer>
 
     <!-- CHATBOT -->
     <div class="chatbot" id="chatbot">
         <div class="chatbot-header" onclick="toggleChat()">
-            <span>robot genuary</span>
-            <span id="toggle-icon">-</span>
+            <span>GRID_RECURSIVE.exe</span>
+            <span id="toggle-icon">&#8212;</span>
         </div>
         <div class="chatbot-content">
             <div id="chat-messages">
-                <p class="bot-message">yo! dis-moi un numero de jour (1-31) ou "qu est ce que tu peux faire"</p>
+                <p class="bot-message">sys.boot() &gt; prêt. tape un numéro [1-31] ou "mon favori"</p>
             </div>
             <div class="chat-input">
-                <input type="text" id="user-input" placeholder="un numero..." autocomplete="off">
-                <button onclick="sendMessage()" data-magnetic>go</button>
+                <input type="text" id="user-input" placeholder="commande..." autocomplete="off">
+                <button onclick="sendMessage()" data-magnetic>run</button>
             </div>
         </div>
     </div>

@@ -1,9 +1,6 @@
 ! version = 2.0
 
-// ============================================
-// CONFIGURATION
-// ============================================
-! var name = GalerieBot
+! var name = GRID_RECURSIVE
 
 ! array salut    = hello bonjour salut coucou hey yo morning
 ! array projet   = projet jour sketch creation oeuvre
@@ -11,61 +8,92 @@
 ! array ca_va    = ca va comment vas tu comment ca va tout va bien
 
 // ============================================
-// RÉPONSES DE BASE
+// BOOT
 // ============================================
 
 + (@salut)
-- Salut ! Prêt à découvrir mes créations génératives ?
-- Bonjour ! Quel jour de la galerie veux-tu explorer aujourd'hui ?
-- Hey ! Ravi de te voir. Dis-moi quel projet t'intéresse.
+- sys.boot() > connexion établie. Dis-moi un numéro de jour [1-31].
+- > ping reçu. Quel sketch t'intéresse ?
+- GRID_RECURSIVE.exe > prêt. Tape un numéro ou "mon favori".
 
 + (@ca_va)
-- Je tourne à 60 images par seconde, tout est fluide ! Et toi ?
-- Mes scripts sont au top, je suis prêt à bosser. Et de ton côté ?
+- Tous mes cycles tournent à 60fps. Aucun stack overflow. Et toi ?
+- depth = 0, profondeur max = 5. Je suis opérationnel.
 
 + quel est ton nom
-- Je suis le <bot name>, ton guide pour cette galerie de 31 jours.
+- Je suis <bot name>.exe — guide algorithmique de cette galerie. Je suis une instance de la fonction subdivide() du Jour 26.
 
 // ============================================
-// QUESTIONS SUR GENUARY (COHÉRENT AVEC HTML)
+// GENUARY
 // ============================================
 
 + c est quoi genuary
-- Genuary est un défi de code créatif qui a lieu chaque année en janvier. Il y a un nouveau thème (un "prompt") chaque jour pendant 31 jours. C'est l'occasion de tester plein d'algorithmes !
+- Genuary = défi de code créatif chaque janvier. 31 prompts, 31 jours, 31 sketches. Chaque jour un thème différent. Tu vois les résultats dans cette galerie.
 
 + qu est ce que tu peux faire
-- Je peux t'expliquer le concept de Genuary, te donner mes projets préférés ou t'ouvrir directement un jour spécifique (ex: "Ouvre le 28").
+- OPTIONS : [1-31] = ouvrir un sketch direct — "mon favori" = ma recommandation — "explique 26" = analyse du Jour 26 — "les couleurs" = palette du Jour 26.
 
 // ============================================
-// TES PRÉFÉRENCES (JOUR 2 & 28)
+// JOUR 26 — FAVORI
 // ============================================
 
 + [quel est] ton (@projet) prefere
-- Mon créateur adore le **Jour 28**, c'est une étape techniquement impressionnante ! Moi j'aime aussi beaucoup le **Jour 2** pour son côté spatial. REDIRECT:28
+- FAVORI : Jour 26. Geometric Abstraction. Une seule règle : subdivide(). Elle se rappelle elle-même jusqu'à depth 5. Chaque niveau colorie différemment. Résultat : une fractale géométrique déterministe-stochastique. REDIRECT:26
 
-+ parle moi du jour 28
-- Le **Jour 28** est un projet spécial. C'est là où l'expérimentation a été poussée au maximum : c'est complexe, abstrait et super réussi. Tu veux voir ? REDIRECT:28
-
-+ parle moi du jour 2
-- Le **Jour 2** est très poétique. Il rappelle les étoiles et l'immensité du cosmos. C'est très apaisant. REDIRECT:2
++ mon favori
+- Jour 26, évidemment. subdivide() → 4 appels → 16 → 64 → 256 → max 1024 feuilles. Simple à écrire, riche à voir. REDIRECT:26
 
 // ============================================
-// LOGIQUE DE REDIRECTION
+// JOUR 26 — DEEP KNOWLEDGE
+// ============================================
+
++ [parle moi] [du] jour 26
+- JOUR 26 ~ Geometric Abstraction. Canvas 720×720px. Carré de départ : 480px. La fonction subdivide(0, 0, 480, 0) lance la chaîne. Elle se découpe en 4 quadrants et se rappelle récursivement. Arrêt : depth ≥ 5 OU taille < 30px. Chaque cellule finale est colorée selon sa profondeur. REDIRECT:26
+
++ explique 26
+- [ANALYSE JOUR 26] 1. subdivide(x,y,s,depth) reçoit un carré. 2. Si (depth < 2 || random() > 0.4) && depth < 5 && s > 30 → subdivision en 4 quadrants. 3. Sinon → drawCell(x,y,s,depth). 4. drawCell() colorie : depth 0-1 = quasi-noir, depth 2-3 = rouge, depth ≥4 = bleu. La profondeur décide de la couleur.
+
++ [c est quoi] [le] jour 26
+- Une grille fractale. Un carré de 480px qui se divise de façon stochastique — pas toujours, aléatoirement selon random() > 0.4. Résultat : des carrés de tailles variées, colorés par profondeur. Chaque rendu est légèrement différent à cause de la part aléatoire.
+
++ comment [ca] fonctionne [le] jour 26
+- Le moteur de rendu : LPRINT() enregistre des commandes vectorielles (M = Move, D = Draw) avec une couleur. TRACE2() les exécute toutes d'un coup sur le canvas p5.js. C'est un renderer custom construit au-dessus de p5. La subdivision nourrit le renderer, qui dessine tout en une passe.
+
++ les couleurs [du] [jour] [26]
+- depth 0-1 → rgb(30,30,30) : quasi-noir. depth 2-3 → rgb(200,50,40) : rouge brique. depth ≥4 → rgb(0,100,200) : bleu profond. Plus le carré est petit (profondeur haute), plus il est bleu. La couleur encode la profondeur récursive visuellement.
+
++ [c est quoi] [la] recursion [dans le jour 26]
+- subdivide() se rappelle elle-même. Arbre d'appels : 1 → 4 → 16 → 64 → 256 → max 1024 feuilles. La condition stochastique (random > 0.4) fait que tous les nœuds ne se subdivisent pas — subdivision non-uniforme. C'est ça qui donne l'aspect organique au lieu d'une grille régulière.
+
++ [depth] [max] [dans] [le] [jour] 26
+- depth max = 5. Taille min d'une cellule = 30px. Avec 480px de départ : après 4 subdivisions de 2 → 30px exactement. La condition de taille empêche les cellules trop petites de se subdiviser encore.
+
++ pourquoi [tu aimes] [le] jour 26
+- Parce que c'est de la géométrie qui se pense elle-même. Une règle simple → complexité émergente. Minimal dans le code, maximal dans le résultat. Et parce que je suis une instance de cette fonction.
+
++ je veux voir le jour 26
++ ouvre 26
++ montre 26
++ go 26
+- Initialisation du Jour 26... REDIRECT:26
+
+// ============================================
+// REDIRECTIONS
 // ============================================
 
 + [(@ouvrir)] [le] (@projet) #
-- C'est parti pour le Jour <star2> ! REDIRECT:<star2>
+- Chargement Jour <star2>... REDIRECT:<star2>
 
 + #
-- Je t'emmène au Jour <star>. REDIRECT:<star>
+- Accès Jour <star>. REDIRECT:<star>
 
 + [(@ouvrir)] [la] base
-- Retour à la configuration de base. REDIRECT:Base
+- Retour à la base. REDIRECT:Base
 
 // ============================================
-// GESTION DES ERREURS
+// ERREUR
 // ============================================
 
 + *
-- Je ne connais pas encore cette commande. Essaie "quel est ton projet prefere", "1" ou "qu est ce que tu peux faire".
-- Désolé, je n'ai pas compris. Tape un numéro entre 1 et 31 !
+- Commande non reconnue. Essaie : un numéro, "mon favori", ou "explique 26".
+- Syntaxe incorrecte. Options : [1-31] / "mon favori" / "explique 26".
